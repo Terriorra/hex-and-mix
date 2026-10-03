@@ -1,3 +1,8 @@
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 class PotionBottle {
     constructor() {
         // 1. Генерируем случайные характеристики для этой конкретной колбы
@@ -64,10 +69,6 @@ class PotionBottle {
     }
 }
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 // Находим полку на странице
 const shelfElement = document.getElementById('shelf');
 
@@ -104,5 +105,48 @@ btnModeLens.addEventListener('click', () => {
     
     inspectorContent.innerHTML = `<p>Наведите лупу на ингредиент...</p>`;
 });
+
+
+// Находим котел и огонек на странице
+const cauldronElement = document.getElementById('cauldron');
+const fireParticle = document.getElementById('fire-particle');
+
+// Оживляем кнопку Огня (третья кнопка в тулбаре)
+const btnActionFire = document.getElementById('btn-action-fire');
+let isFireOn = false;
+
+btnActionFire.addEventListener('click', () => {
+    isFireOn = !isFireOn; // Меняем состояние вкл/выкл
+    
+    if (isFireOn) {
+        fireParticle.classList.add('burning'); // Зажигаем огонь
+        btnActionFire.classList.add('active');  // Подсвечиваем кнопку золотым
+    } else {
+        fireParticle.classList.remove('burning'); // Тушим огонь
+        btnActionFire.classList.remove('active');
+    }
+});
+
+// Оживляем кнопку Стука (пятая кнопка в тулбаре)
+const btnActionKnock = document.getElementById('btn-action-knock');
+
+btnActionKnock.addEventListener('click', () => {
+
+     // 1. Генерируем случайную силу прыжка от 5 до 15 пикселей
+    const randomJump = getRandomInt(5, 15);
+
+    // Делаем легкий визуальный «тычок» котла вверх-вниз
+    cauldronElement.style.transform = `translateY(-${randomJump}px)`;
+    
+    // Через 80 миллисекунд возвращаем котел на место
+    setTimeout(() => {
+        cauldronElement.style.transform = 'translateY(0)';
+    }, 80);
+});
+
+
+
+
+
 
 
