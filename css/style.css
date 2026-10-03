@@ -1,0 +1,246 @@
+@font-face {
+    font-family: 'WitchFont';
+    src: url('../assets/fonts/Phonix\ Kursiv.ttf');
+}
+
+h1 {
+    font-family: 'WitchFont', sans-serif;
+    font-size: 48px;
+    color: #9d4edd; 
+    margin: 0 0 15px 0;
+}
+
+h3 {
+    font-family: 'WitchFont', sans-serif;
+    font-size: 24px;
+    color: #9d4edd;
+    text-align: center;
+}
+
+p {
+    font-family: 'WitchFont', sans-serif;
+    font-size: 14px;
+    color: #9d4edd;
+    text-align: left;
+}
+
+
+body {
+    background-color: #130f1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Прижимаем всё к верху страницы, убирая левитацию блоков */
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+#btn-mode-hand {
+    display: flex;
+    background-color: #221930;
+    align-self: first baseline;
+    padding: 15 px 30 px;
+    border-radius: 8 px;
+    border-bottom: #3d2a54;
+}
+
+#btn-mode-lens {
+    display: flex;
+    background-color: #221930;
+    padding: 15 px 30 px;
+    border-radius: 8 px;
+    border-bottom: #3d2a54;
+}
+
+#toolbar {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.mode-btn {
+    background-color: #3d2a54;
+    color: #e0d0f0;
+    border: 2px solid #5a3d75;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Наш игровой стол — выстраивает левую и правую часть в ряд */
+.game-table {
+    display: flex;
+    flex-direction: row;     /* Элементы идут слева направо */
+    align-items: stretch; /* Выравнивание по верхнему краю */
+    gap: 20px;               
+    width: 100%;
+    max-width: 800px;        /* Ограничим общую ширину стола */
+}
+
+/* Настраиваем зону котла справа */
+#cauldron-zone {
+    flex-grow: 1;
+    background-color: #1a1226;
+    border: 2px dashed #3d2a54;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+}
+
+/* Временная заглушка котла для наглядности */
+.placeholder-cauldron {
+    width: 150px;
+    height: 150px;
+    background-color: #322347;
+    border: 3px dashed #5a3d75;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #bfaecf;
+}
+
+.mode-btn:hover {
+    background-color: #4e356b;
+    border-color: #7b539c;
+}
+
+/* Класс для АКТИВНОГО инструмента (сейчас в руке) */
+.mode-btn.active {
+    background-color: #ff9e00;
+    color: #130f1a;
+    border-color: #ffb703;
+    box-shadow: 0 0 12px rgba(255, 158, 0, 0.4);
+}
+
+
+#inspector-panel {
+    background-color: #241931;
+    border: 2px solid #5a3d75;
+    border-radius: 8px;
+    padding: 12px;
+    width: 200px; 
+    text-align: left;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+}
+
+#inspector-panel h3 {
+    margin: 0 0 8px 0;
+    color: #ff9e00;
+    font-size: 16px;
+    border-bottom: 1px solid #5a3d75;
+    padding-bottom: 3px;
+}
+
+#inspector-content p {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #bfaecf;
+}
+
+.stat-value {
+    color: #00f5d4;
+    font-weight: bold;
+}
+
+
+#shelf {
+    display: flex;
+    /* gap: 20px;            /* Расстояние между колбочками */
+    background-color: #221930; /* Цвет деревянной полки, чуть светлее фона */
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-bottom: 4px solid #3d2a54; /* Визуальный «бортик» полки */
+    min-height: 120px;    /* Чтобы пустая полка не схлопывалась */
+    min-width: 500px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-items: flex-end; /* Чтобы не левитировали */
+}
+
+/* Стекло колбы */
+.bottle-container {
+    border: 3px solid #e0d0f0;    /* Светлый контур «стекла» */
+    border-radius: 4px;           /* Чуть сгладим углы прямоугольника */
+    position: relative;
+    display: flex;
+    align-items: flex-end;        /* Важно: жидкость будет прижата к дну! */
+    overflow: hidden;             /* Чтобы жидкость не вылезала за контуры стекла */
+    background-color: rgba(255, 255, 255, 0.05); /* Легкий отблеск пустого стекла */
+    cursor: grab;
+    transition: transform 0.2s;
+}
+
+/* Эффект при наведении мыши (лупа/выделение) */
+.bottle-container:hover {
+    transform: scale(1.08);
+    border-color: #ff9e00;        /* Подсветим золотым при наведении */
+}
+
+/* Жидкость */
+.bottle-liquid {
+    width: 100%;                  /* Жидкость занимает всю ширину колбы */
+    transition: height 0.3s;      /* Красивое покачивание/изменение уровня в будущем */
+}
+
+
+/* Правая панель: Новая вертикальная панель инструментов */
+#action-toolbar {
+    background-color: #241931;
+    border: 2px solid #5a3d75;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Кнопки встают друг под друга */
+    gap: 10px;
+    justify-content: flex-start;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+
+/* Круглые стильные кнопки-смайлики */
+.tool-btn {
+    background-color: #3d2a54;
+    color: #e0d0f0;
+    border: 2px solid #5a3d75;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%; /* Превращаем в идеальный круг */
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+
+
+.tool-btn:hover {
+    background-color: #4e356b;
+    border-color: #7b539c;
+    transform: scale(1.05);
+}
+
+/* Подсветка для активного режима (Рука или Лупа) */
+.tool-btn.active {
+    background-color: #ff9e00;
+    border-color: #ffb703;
+    box-shadow: 0 0 8px rgba(255, 158, 0, 0.4);
+}
+
+/* Тонкий разделитель между режимами и действиями */
+.tool-divider {
+    height: 2px;
+    background-color: #5a3d75;
+    margin: 5px 0;
+}
+
