@@ -1,14 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hex & Mix</title>
     <!-- 1. Подключаем стили из папки css -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <!-- Тут будет жить наша игра -->
     <h1>Hex & Mix</h1>
 
@@ -16,55 +15,65 @@
     <div id="shelf"></div>
 
     <!-- Новый контейнер: игровой стол, где всё стоит в один ряд -->
-    <div class="game-table"> 
+    <div class="game-table">
+      <!-- Левая колонка: инфо-панель -->
+      <!-- Окошко лупы теперь просто показывает текст, без кнопок внутри -->
+      <div id="inspector-panel">
+        <div id="inspector-content"></div>
+      </div>
 
-        <!-- Левая колонка: инфо-панель -->
-        <!-- Окошко лупы теперь просто показывает текст, без кнопок внутри -->
-        <div id="inspector-panel">    
-            <div id="inspector-content">
-            </div>
+      <!-- Центр: Зона котла -->
+      <div id="cauldron-zone">
+        <div class="alchemy-setup">
+          <!-- Сам котёл (состоит из ободка и круглого тела) -->
+          <div id="cauldron">
+            <div class="cauldron-rim"></div>
+            <!-- Сюда в будущем будет визуально капать жидкость -->
+          </div>
+
+          <!-- Горелка под котлом (трапеция) -->
+          <div id="burner">
+            <!-- Сюда мы потом вставим огонь -->
+            <div id="fire-particle"></div>
+          </div>
         </div>
-        
-        <!-- Центр: Зона котла -->
-        <div id="cauldron-zone">
-            <div class="alchemy-setup">
-                
-                <!-- Сам котёл (состоит из ободка и круглого тела) -->
-                <div id="cauldron">
-                    <div class="cauldron-rim"></div>
-                    <!-- Сюда в будущем будет визуально капать жидкость -->
-                </div>
-                
-                <!-- Горелка под котлом (трапеция) -->
-                <div id="burner">
-                    <!-- Сюда мы потом вставим огонь -->
-                    <div id="fire-particle"></div>
-                </div>
-                
-            </div>
-        </div>
+      </div>
 
-        <!-- 3. Новая Правая колонка: Вертикальная панель инструментов -->
-        <div id="action-toolbar">
-            <!-- Режимы взаимодействия -->
-            <button id="btn-mode-hand" class="tool-btn active" title="Рука (Таскать)">🖐️</button>
-            <button id="btn-mode-lens" class="tool-btn" title="Лупа (Изучать)">🔍</button>
-            
-            <div class="tool-divider"></div> <!-- Тонкая разделительная черта -->
-            
-            <!-- Кнопки действий над котлом -->
-            <button id="btn-action-fire" class="tool-btn" title="Развести огонь">🔥</button>
-            <button id="btn-action-stir" class="tool-btn" title="Перемешать варево">🥄</button>
-            <button id="btn-action-knock" class="tool-btn" title="Постучать по котлу">🔨</button>
-        </div>
+      <!-- 3. Новая Правая колонка: Вертикальная панель инструментов -->
+      <div id="action-toolbar">
+        <!-- Режимы взаимодействия -->
+        <button
+          id="btn-mode-hand"
+          class="tool-btn active"
+          title="Рука (Таскать)"
+        >
+          🖐️
+        </button>
+        <button id="btn-mode-lens" class="tool-btn" title="Лупа (Изучать)">
+          🔍
+        </button>
 
+        <div class="tool-divider"></div>
+        <!-- Тонкая разделительная черта -->
 
+        <!-- Кнопки действий над котлом -->
+        <button id="btn-action-fire" class="tool-btn" title="Развести огонь">
+          🔥
+        </button>
+        <button id="btn-action-stir" class="tool-btn" title="Перемешать варево">
+          🥄
+        </button>
+        <button
+          id="btn-action-knock"
+          class="tool-btn"
+          title="Постучать по котлу"
+        >
+          🔨
+        </button>
+      </div>
     </div>
-
-
-
 
     <!-- 2. Подключаем JavaScript из папки js в самом конце body -->
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
