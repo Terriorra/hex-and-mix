@@ -71,6 +71,58 @@ body {
   transition: all 0.2s ease;
 }
 
+/* Рецепт + полка */
+.game-top {
+  display: flex;
+  flex-direction: row; /* Строго в ряд слева направо */
+  align-items: flex-end; /* Выравниваем их по нижнему краю */
+  gap: 10px; /* Расстояние между свитком и полкой */
+  margin-bottom: 12px; /* Отступ вниз до игрового стола с котлом */
+  width: 100%;
+  max-width: 1000px; /* Ограничиваем общую ширину, как у стола */
+}
+
+/* Сам блок свитка */
+#recipe-scroll {
+  background-color: #2e223a; /* Темный благородный фон свитка */
+  border: 2px solid #ff9e00; /* Четкая золотая рамка */
+  border-radius: 6px;
+  padding: 12px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  /* Магия адаптивности: свиток будет сжиматься/растягиваться, 
+       занимая всё свободное место слева от полки */
+  flex-grow: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Текст внутри свитка */
+#recipe-target {
+  font-family: "WitchFont", sans-serif;
+  font-size: 15px;
+  line-height: 1.4; /* Расстояние между строками, чтобы текст дышал */
+  letter-spacing: 0.5px; /* Небольшой шаг между буквами для читаемости */
+}
+
+/* Заголовок "Заказ гильдии магов:" */
+#recipe-target strong {
+  color: #ff9e00; /* Золотой цвет */
+  text-transform: uppercase; /* Делает все буквы ЗАГЛАВНЫМИ */
+  font-size: 13px;
+  display: block; /* Переносит текст самого рецепта на новую строчку */
+  margin-bottom: 4px; /* Отступ до самого текста рецепта */
+}
+
+/* Текст самого рецепта (сейчас там "Загрузка рецепта...") */
+#recipe-text {
+  color: #e0d0f0; /* цвет для целей квеста */
+  /* font-weight: bold;
+  /*font-style: italic; /* Сделаем текст курсивным, как старинная рукопись */
+}
+
 /* Наш игровой стол — выстраивает левую и правую часть в ряд */
 .game-table {
   display: flex;
@@ -78,7 +130,7 @@ body {
   align-items: stretch; /* Выравнивание по верхнему краю */
   gap: 20px;
   width: 100%;
-  max-width: 800px; /* Ограничим общую ширину стола */
+  max-width: 1200px; /* Ограничим общую ширину стола */
 }
 
 /* Настраиваем зону котла справа */
@@ -193,7 +245,7 @@ body {
   border: 2px solid #5a3d75;
   border-radius: 8px;
   padding: 12px;
-  width: 200px;
+  width: 300px;
   text-align: left;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
@@ -202,19 +254,19 @@ body {
 #inspector-panel h3 {
   margin: 0 0 8px 0;
   color: #ff9e00;
-  font-size: 16px;
+  font-size: 18px;
   border-bottom: 1px solid #5a3d75;
   padding-bottom: 3px;
 }
 
 #inspector-content p {
   margin: 4px 0;
-  font-size: 13px;
+  font-size: 18px;
   color: #bfaecf;
 }
 
 .stat-value {
-  color: #00f5d4;
+  color: #ba46c9;
   font-weight: bold;
 }
 
@@ -309,4 +361,53 @@ body {
   height: 2px;
   background-color: #5a3d75;
   margin: 5px 0;
+}
+
+/* Контейнер для заголовка и кнопок управления */
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Расталкивает заголовок влево, а кнопки вправо */
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 15px;
+}
+
+#game-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Выпадающий список сложности */
+#difficulty-select {
+  font-family: "WitchFont", sans-serif;
+  background-color: #241931;
+  color: #e0d0f0;
+  border: 2px solid #5a3d75;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Кнопки Старт и Перемешать рецепт */
+#btn-start-game,
+#btn-reroll-recipe {
+  background-color: #3d2a54;
+  color: #e0d0f0;
+  border: 2px solid #5a3d75;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#btn-start-game:hover,
+#btn-reroll-recipe:hover {
+  background-color: #ff9e00;
+  color: #130f1a;
+  border-color: #ffb703;
 }

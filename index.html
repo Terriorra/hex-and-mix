@@ -4,15 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hex & Mix</title>
+
     <!-- 1. Подключаем стили из папки css -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <!-- Тут будет жить наша игра -->
-    <h1>Hex & Mix</h1>
+    <div class="header-container">
+      <h1>Hex & Mix</h1>
 
-    <!-- Наша полка, пока пустая. JS будет добавлять колбочки сюда -->
-    <div id="shelf"></div>
+      <!-- Фирменная панель управления игрой -->
+      <div id="game-controls">
+        <select id="difficulty-select" title="Выбор сложности">
+          <option value="1">Элементарно (1 условие)</option>
+          <option value="2">Легко (2 условия)</option>
+          <option value="3" selected>Нормально (3 условия)</option>
+          <option value="4">Сложно (4 условия)</option>
+          <option value="5">Невозможно (5 условий)</option>
+        </select>
+
+        <button
+          id="btn-start-game"
+          title="Начать заново с этим уровнем сложности"
+        >
+          ▶️
+        </button>
+        <button id="btn-reroll-recipe" title="Поменять рецепт">🔄</button>
+      </div>
+    </div>
+
+    <!--Рецепт + полка-->>
+    <div class="game-top">
+      <!-- Левая колонка: Свиток Задания/Рецепта -->
+      <div id="recipe-scroll">
+        <div id="recipe-target">
+          <strong>Заказ гильдии магов:</strong>
+          <span id="recipe-text">Загрузка рецепта...</span>
+        </div>
+      </div>
+
+      <!-- Правая колонка: Полка-->
+      <div id="shelf"></div>
+    </div>
 
     <!-- Новый контейнер: игровой стол, где всё стоит в один ряд -->
     <div class="game-table">
@@ -41,24 +74,16 @@
 
       <!-- 3. Новая Правая колонка: Вертикальная панель инструментов -->
       <div id="action-toolbar">
-        <!-- Режимы взаимодействия -->
-        <button
-          id="btn-mode-hand"
-          class="tool-btn active"
-          title="Рука (Таскать)"
-        >
-          🖐️
-        </button>
-        <button id="btn-mode-lens" class="tool-btn" title="Лупа (Изучать)">
-          🔍
-        </button>
-
-        <div class="tool-divider"></div>
-        <!-- Тонкая разделительная черта -->
-
         <!-- Кнопки действий над котлом -->
         <button id="btn-action-fire" class="tool-btn" title="Развести огонь">
           🔥
+        </button>
+        <button
+          id="btn-action-freeze"
+          class="tool-btn"
+          title="Заморозить варево"
+        >
+          ❄️
         </button>
         <button id="btn-action-stir" class="tool-btn" title="Перемешать варево">
           🥄
