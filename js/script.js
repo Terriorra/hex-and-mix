@@ -1,10 +1,10 @@
 // Регистрируем звук стука и указываем к нему правильный путь
-const soundKnock = new Audio("../assets/audio/hit.wav");
-const soundSplash = new Audio("../assets/audio/splash.wav");
-const soundFire = new Audio("../assets/audio/fire.flac");
-const soundFreeze = new Audio("../assets/audio/freeze.wav");
-const soundWin = new Audio("../assets/audio/win.wav");
-const soundPop = new Audio("../assets/audio/pop.wav");
+const soundKnock = new Audio("assets/audio/hit.wav");
+const soundSplash = new Audio("assets/audio/splash.wav");
+const soundFire = new Audio("assets/audio/fire.flac");
+const soundFreeze = new Audio("assets/audio/freeze.wav");
+const soundWin = new Audio("assets/audio/win.wav");
+const soundPop = new Audio("assets/audio/pop.wav");
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
